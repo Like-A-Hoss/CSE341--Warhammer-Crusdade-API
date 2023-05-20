@@ -17,7 +17,9 @@
     "mongodb": "^5.5.0",
     "nodemon": "^2.0.22",
     "swagger": "^0.0.1",
-    "swagger-autogen": "^2.23.1",
     "swagger-ui-express": "^4.6.3"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.1"
   }
 }

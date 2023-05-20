@@ -1,16 +1,77 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "version": "1.0.0",
-      "title": "Warhammer Crusade API",
-      "description": "API For creating and managing armies under the Warhammer 40,000 Table Top Wargaming Narrative Game Play"
-    },
-    "host":  "https://cse341-warhammer-crusade-api.onrender.com",
-    "basePath": "/",
-    "tags": [
-      {
-        "name": "Crusade",
-        "description": "API for Nathan S. Hoskins Coursework"
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Warhammer Crusade API",
+    "description": "API For creating and managing armies under the Warhammer 40,000 Table Top Wargaming Narrative Game Play"
+  },
+  "host": "https://cse341-warhammer-crusade-api.onrender.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Crusade",
+      "description": "API for Nathan S. Hoskins Coursework"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "JWT": {
+      "type": "none",
+      "in": "none",
+      "name": "none",
+      "description": ""
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
-    ]
+    },
+    "/army/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/unit/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
   }
+}
