@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
+const temp_port = process.env.PORT || 3000;
 
+// This is where the action happens
 console.log('starting DB Connection');
 const client = require('./models/db_connection');
 console.log('initializing DB');
