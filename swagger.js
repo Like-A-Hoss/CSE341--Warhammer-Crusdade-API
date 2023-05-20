@@ -9,7 +9,7 @@ const doc = {
       title: "Warhammer Crusade API",
       description: "API For creating and managing armies under the Warhammer 40,000 Table Top Wargaming Narrative Game Play"
   },
-  host:"https://cse341-warhammer-crusade-api.onrender.com",// API host URL
+  host:"cse341-warhammer-crusade-api.onrender.com",// API host URL
   basePath: "/",
   schemes: ['https'],
   consumes: ['application/json'],
