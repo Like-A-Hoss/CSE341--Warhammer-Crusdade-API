@@ -11,7 +11,7 @@ const router = express.Router();
 
 //Actions
 const getAll = async (req, res)=>
-    {const result = await db_client.getDb().db().collection('armies').find(); //this goes into database and pulls everything out
+    {const result = await db_client.getDb().db('crusade').collection('armies').find(); //this goes into database and pulls everything out
     result.toArray().then((data) => {   //this takes everything and turns it from a JSON to an array
   res.setHeader('Content-Type', 'application/json');
   res.status(200).json(data);

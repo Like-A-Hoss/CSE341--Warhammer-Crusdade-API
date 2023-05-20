@@ -1,0 +1,39 @@
+### Get All Contacts
+Get http://localhost:3000/ HTTP/1.1
+To retrieve welcome message
+
+
+To retrieve all armies in database
+### Get all armies
+Get  http://localhost:3000/army HTTP/1.1
+
+###Get all Units
+GET  http://localhost:3000/unit HTTP/1.1
+
+
+### POST Contact
+POST https://cse341-spring23-3b0l.onrender.com/contacts HTTP/1.1
+Content-Type: application/json
+{
+  "firstName" : "Homer",
+  "lastName" : "Simpson",
+  "email" : "chunkylover53@aol.com",
+  "favoriteColor" : "Blue",
+  "birthday" : "1956-05-12"
+}
+
+### PUT Contact update
+PUT https://cse341-spring23-3b0l.onrender.com/contacts/6456d35fc50761486c267e30 HTTP/1.1
+Content-Type: application/json
+{
+  "firstName":"Peggy",
+  "lastName":"Hill",
+  "email":"p.hill@kingofthehill.tv",
+  "favoriteColor":"Pink",
+  "birthday":"1954-02-14"
+}
+
+### DELETE
+DELETE https://cse341-spring23-3b0l.onrender.com/contacts/645585f43c894d5b5f87a108 HTTP/1.1
+
+### Please restore when done
