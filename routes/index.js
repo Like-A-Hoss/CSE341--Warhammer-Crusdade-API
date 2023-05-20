@@ -6,9 +6,8 @@ const specs = require('../swagger.json');
 
 // Routes
 router.use('/', require('./intro'));
-router.use('/random', require('./random'))
-router.use('/contacts', require('./contacts'));
-router.use('/search', require('./search'));
+router.use('/army', require('./armies'))
+router.use('/unit', require('./units'));
 router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // Ship it out
