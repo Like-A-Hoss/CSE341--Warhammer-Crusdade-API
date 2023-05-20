@@ -1,0 +1,16 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Warhammer Crusade API",
+      "description": "API For creating and managing armies under the Warhammer 40,000 Table Top Wargaming Narrative Game Play"
+    },
+    "host":  "https://cse341-warhammer-crusade-api.onrender.com",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Crusade",
+        "description": "API for Nathan S. Hoskins Coursework"
+      }
+    ]
+  }
