@@ -11,15 +11,14 @@ Get  http://localhost:3000/army HTTP/1.1
 GET  http://localhost:3000/unit HTTP/1.1
 
 
-### POST Contact
+### POST Army
 POST https://cse341-spring23-3b0l.onrender.com/contacts HTTP/1.1
 Content-Type: application/json
 {
-  "firstName" : "Homer",
-  "lastName" : "Simpson",
-  "email" : "chunkylover53@aol.com",
-  "favoriteColor" : "Blue",
-  "birthday" : "1956-05-12"
+  "Name": "Speakers of the Book",
+    "army_logo": "https://www.warhammer-community.com/wp-content/uploads/2016/12/Word-Bearers-icon.png",
+    "RP": 0,
+    "size": 500
 }
 
 ### PUT Contact update
