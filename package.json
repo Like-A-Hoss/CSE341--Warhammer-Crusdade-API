@@ -1,0 +1,22 @@
+{
+  "name": "cse341--warhammer-crusdade-api",
+  "version": "1.0.0",
+  "description": "This API manages armies and units for the popular table top game warhammer 40,000 in it's crusade game style",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Nathan S. Hoskins",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "swagger": "^0.0.1",
+    "swagger-autogen": "^2.23.1",
+    "swagger-ui-express": "^4.6.3"
+  }
+}
