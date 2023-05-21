@@ -44,44 +44,7 @@
           }
         }
       },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Name": {
-                  "example": "any"
-                },
-                "army_logo": {
-                  "example": "any"
-                },
-                "RP": {
-                  "example": "any"
-                },
-                "battle_honors": {
-                  "example": "any"
-                },
-                "battle_scars": {
-                  "example": "any"
-                },
-                "army_id": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
+      
     "/{id}": {
       "get": {
         "description": "",
@@ -126,22 +89,22 @@
               "type": "object",
               "properties": {
                 "Name": {
-                  "example": "any"
+                  "example": "Valhallan 597"
                 },
                 "army_logo": {
-                  "example": "any"
+                  "example": "https://64.media.tumblr.com/36313582dcfaa8c9b3a9a58255fc70b9/2aed191ab8b948e3-a0/s1280x1920/686c067734f8f7badbdbc6f34bbe264179b1bdcd.jpg"
                 },
                 "faction": {
-                  "example": "any"
+                  "example": "Guard"
                 },
                 "RP": {
-                  "example": "any"
+                  "example": "0"
                 },
                 "size": {
-                  "example": "any"
+                  "example": "500"
                 },
                 "user_email": {
-                  "example": "any"
+                  "example": "Caiphas@games-workshop.com"
                 }
               }
             }
@@ -188,7 +151,7 @@
           }
         }
       },
-      "post": {
+      "put": {
         "description": "",
         "parameters": [
           {
