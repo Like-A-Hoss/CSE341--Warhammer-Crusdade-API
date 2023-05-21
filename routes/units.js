@@ -4,6 +4,6 @@ const path = require('../controlers/units');
 
 router.get('/', path.getAll);
 router.get('/:id', path.getSearch);
-router.put('/', path.postNew);
+router.post('/', path.postNew);
 
 module.exports = router;
