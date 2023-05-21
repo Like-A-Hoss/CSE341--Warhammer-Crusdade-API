@@ -16,7 +16,7 @@ POST http://localhost:3000/army HTTP/1.1
 Content-Type: application/json
 {
     "Name": "Wolf's Song",
-    "army_logo": "https://www.warhammer-community.com/wp-content/uploads/2016/12/Word-Bearers-icon.png",
+    "army_logo": "https://clipground.com/images/space-wolves-logo-2.jpg",
     "faction": "Space Wolves",
     "RP": 0,
     "size": 500,
@@ -24,5 +24,49 @@ Content-Type: application/json
 }
 ### Post Unit
 POST http://localhost:3000/unit HTTP/1.1
+{
+  "Name": "Sven's New Pups",
+  "type": "Blood Claws",
+  "xp": "0",
+  "battle_honors": "[]",
+  "battle_scars": "[]",
+  "army_id": "646993b133c2b7e9757d2a9f"
+}
 
-### Please restore when done
+### Same stuff but on server.
+
+###
+### Get All Contacts
+Get https://cse341-warhammer-crusade-api.onrender.com/ HTTP/1.1
+To retrieve welcome message
+
+
+To retrieve all armies in database
+### Get all armies
+Get  https://cse341-warhammer-crusade-api.onrender.com/army HTTP/1.1
+
+###Get all Units
+GET  https://cse341-warhammer-crusade-api.onrender.com/unit HTTP/1.1
+
+To add an army
+### POST Army
+POST https://cse341-warhammer-crusade-api.onrender.com/army HTTP/1.1
+Content-Type: application/json
+{
+    "Name": "Wolf's Song",
+    "army_logo": "https://clipground.com/images/space-wolves-logo-2.jpg",
+    "faction": "Space Wolves",
+    "RP": 0,
+    "size": 500,
+    "user_email": "hapleswithdice@gmail.com"
+}
+### Post Unit
+POST https://cse341-warhammer-crusade-api.onrender.com/unit HTTP/1.1
+{
+  "Name": "Sven's New Pups",
+  "type": "Blood Claws",
+  "xp": "0",
+  "battle_honors": "[]",
+  "battle_scars": "[]",
+  "army_id": "646993b133c2b7e9757d2a9f"
+}
