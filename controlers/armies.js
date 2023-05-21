@@ -37,6 +37,7 @@ const postNew = async (req,res) =>
   const army = {
     Name: req.body.Name,
     army_logo: req.body.army_logo,
+    faction: req.body.faction,
     RP: req.body.RP,
     size: req.body.size,
     user_email: req.body.user_email
