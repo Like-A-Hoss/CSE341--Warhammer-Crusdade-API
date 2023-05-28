@@ -8,7 +8,7 @@ router.post('/', path.postNew);
 //router.put('/:id', path);
 router.put('/rp/:id', path.updateRp);
 router.put('/size/:id', path.updateSize);
-router.put('/logo/:id', path.getAll)
-router.delete('/:id', path.getAll);
+router.put('/logo/:id', path.updateLogo)
+router.delete('/:id', path.remove);
 
 module.exports = router;

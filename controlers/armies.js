@@ -51,49 +51,61 @@ const updateRp = async(req,res) =>
 {
   const query = new objectId(req.params.id);
   const updateField = req.body.updateField;
-  db_client.getDb().db(dbName).collection(colName).updateField(
+  const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
     {_id:query},
     { $set:{RP: updateField}},
-    function(err, result) {
-      if(err) {
-        console.error('Error Updating Document:', err);
-        res.status(500).send('Error Updating File');
-        return;
-      }
-      if(result.modifiedCount === 1){
-        console.log('Document updated Successfully');
-        res.status(200).send('Document Updated Sucessfully');
-      }else{
-        console.log('Document Not Found');
-        res.status(404).send('Error 404 Document Not Found')
-      }
+    {upsert:true}
+    );
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(500).json(response.error || 'Some error occurred while updating the contact.');
     }
-     );
 };
 
 const updateSize = async(req,res) =>
 {
   const query = new objectId(req.params.id);
   const updateField = req.body.updateField;
-  db_client.getDb().db(dbName).collection(colName).updateField(
+  const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
     {_id:query},
     { $set:{size: updateField}},
-    function(err, result) {
-      if(err) {
-        console.error('Error Updating Document:', err);
-        res.status(500).send('Error Updating File');
-        return;
-      }
-      if(result.modifiedCount === 1){
-        console.log('Document updated Successfully');
-        res.status(200).send('Document Updated Sucessfully');
-      }else{
-        console.log('Document Not Found');
-        res.status(404).send('Error 404 Document Not Found')
-      }
+    {upsert:true}
+    );
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(500).json(result.error || 'Some error occurred while updating the contact.');
     }
-     );
 };
 
+const updateLogo = async(req,res) =>
+{
+  const query = new objectId(req.params.id);
+  const updateField = req.body.updateField;
+  const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
+    {_id:query},
+    { $set:{army_logo: updateField}},
+    {upsert:true}
+    );
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(500).json(result.error || 'Some error occurred while updating the contact.');
+    }
+};
+// Delete Statement
+const remove = async (req,res) =>
+{
+  const query = new objectId(req.params.id);
+  console.log(query);
+  const response = await db_client.getDb().db(dbName).collection(colName).deleteOne({_id: query}); 
+    console.log(response);
+    if (response.deletedCount > 0) {
+      res.status(204).send();
+    }else {
+      res.status(500).json(response.error || 'An unknown error occured while attempting to delete contact.');
+    }
+};
 //export statement
-module.exports = {getAll, getSearch, postNew, updateRp, updateSize};
+module.exports = {getAll, getSearch, postNew, updateRp, updateSize, updateLogo, remove};

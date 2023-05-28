@@ -1,19 +1,14 @@
 ### Get All Contacts
 Get http://localhost:3000/ HTTP/1.1
-To retrieve welcome message
-
-
-To retrieve all armies in database
 ### Get all armies
 Get  http://localhost:3000/army HTTP/1.1
 
 ###Get all Units
 GET  http://localhost:3000/unit HTTP/1.1
-
-
 ### POST Army
 POST http://localhost:3000/army HTTP/1.1
 Content-Type: application/json
+
 {
     "Name": "Wolf's Song",
     "army_logo": "https://clipground.com/images/space-wolves-logo-2.jpg",
@@ -23,13 +18,26 @@ Content-Type: application/json
     "user_email": "hapleswithdice@gmail.com"
 }
 ### Update RP
-PUT http://localhost:3000/army/rp/?6468411c70c6724db13ccf58 HTTP/1.1
+PUT http://localhost:3000/army/rp/6468411c70c6724db13ccf58 HTTP/1.1
 Content-Type: application/json
+
 {
-  "updateField" : 10
+  "updateField" : 5
 }
+### update Size
+PUT http://localhost:3000/army/size/6468411c70c6724db13ccf58 HTTP/1.1
+Content-Type: application/json
+
+{
+  "updateField" : 500
+}
+### Remove
+DELETE  http://localhost:3000/army/6472be37ab6c508da446ee57 HTTP/1.1
+
+###Units
 ### Post Unit
 POST http://localhost:3000/unit HTTP/1.1
+
 {
   "Name": "Sven's New Pups",
   "type": "Blood Claws",
@@ -37,6 +45,19 @@ POST http://localhost:3000/unit HTTP/1.1
   "battle_honors": "[]",
   "battle_scars": "[]",
   "army_id": "646993b133c2b7e9757d2a9f"
+}
+
+### Update XP
+PUT http://localhost:3000/unit/xp/64683fe470c6724db13ccf57 HTTP/1/1
+
+{
+  "update": "5"
+}
+###update honors
+PUT http://localhost:3000/unit/honors/64683fe470c6724db13ccf57 HTTP/1/1
+
+{
+  "updateField": "Meltagun - Acelerator"
 }
 
 ### Same stuff but on server.

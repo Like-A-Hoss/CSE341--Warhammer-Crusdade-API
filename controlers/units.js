@@ -47,5 +47,66 @@ const postNew = async (req,res) =>
   const result = await db_client.getDb().db(dbName).collection(colName).insertOne(army, true)
     res.send({id: result.insertedId});
 };
+// Update Functions
+const updatexp = async(req,res) =>
+{
+  const query = new objectId(req.params.id);
+  const updateField = req.body.update;
+  console.log(updateField);
+  const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
+    {_id:query},
+    { $set:{xp: updateField}},
+    {upsert:true}
+    );
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    } else {
+      
+      res.status(500).json(result.error || 'Some error occurred while updating the contact.');
+    }
+};
+const updateBattleHonors = async(req,res) =>
+{
+  const query = new objectId(req.params.id);
+  const updateField = req.body.updateField;
+  const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
+    {_id:query},
+    { $push:{battle_honors: updateField}},
+    {upsert:true}
+    );
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(500).json(result.error || 'Some error occurred while updating the contact.');
+    }
+};
+const updateBattleScars = async(req,res) =>
+{
+  const query = new objectId(req.params.id);
+  const updateField = req.body.updateField;
+  const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
+    {_id:query},
+    { $push:{battle_scars: updateField}},
+    {upsert:true}
+    );
+    if (result.modifiedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(500).json(result.error || 'Some error occurred while updating the contact.');
+    }
+};
+// Delete Function
+const remove = async (req,res) =>
+{
+  const query = new objectId(req.params.id);
+  console.log(query);
+  const response = await db_client.getDb().db(dbName).collection(colName).deleteOne({_id: query}); 
+    console.log(response);
+    if (response.deletedCount > 0) {
+      res.status(204).send();
+    }else {
+      res.status(500).json(response.error || 'An unknown error occured while attempting to delete contact.');
+    }
+};
 //export statement
-module.exports = {getAll, getSearch, postNew};
+module.exports = {getAll, getSearch, postNew, updateBattleHonors, updateBattleScars, updatexp, remove};
