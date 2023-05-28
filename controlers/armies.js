@@ -8,6 +8,9 @@ const app = express();
 const objectId = require('mongodb').ObjectId;
 const mongodb = require('mongodb');
 const router = express.Router();
+
+
+//variables to control DB and DB Access
 const dbName = "crusade";
 const colName = "armies"
 
@@ -25,6 +28,14 @@ const getSearch = async (req,res)=>
 {
   const query = new objectId(req.params.id);
   console.log(query);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }else{
+    console.log('Passed Validation, Proceeding');
+  }
+
   const result = await db_client.getDb().db(dbName).collection(colName).find({id: query});
   result.toArray().then((data) => {
   res.setHeader('Content-Type', 'application/json');
@@ -46,11 +57,18 @@ const postNew = async (req,res) =>
   const result = await db_client.getDb().db(dbName).collection(colName).insertOne(army, true)
     res.send({id: result.insertedId});
 };
+
 //update Resource Points
 const updateRp = async(req,res) =>
 {
   const query = new objectId(req.params.id);
   const updateField = req.body.updateField;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+
   const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
     {_id:query},
     { $set:{RP: updateField}},

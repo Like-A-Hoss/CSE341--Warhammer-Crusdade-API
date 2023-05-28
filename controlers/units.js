@@ -25,6 +25,11 @@ const getSearch = async (req,res)=>
 {
   const query = new objectId(req.params.id);;
   console.log(query);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
   const result = await db_client.getDb().db(dbName).collection(colName).find({id: query});
   result.toArray().then((data) => {
   res.setHeader('Content-Type', 'application/json');
@@ -52,6 +57,12 @@ const updatexp = async(req,res) =>
 {
   const query = new objectId(req.params.id);
   const updateField = req.body.update;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+  console.log(req.body.update)
   console.log(updateField);
   const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
     {_id:query},
@@ -69,6 +80,11 @@ const updateBattleHonors = async(req,res) =>
 {
   const query = new objectId(req.params.id);
   const updateField = req.body.updateField;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
   const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
     {_id:query},
     { $push:{battle_honors: updateField}},
@@ -84,6 +100,12 @@ const updateBattleScars = async(req,res) =>
 {
   const query = new objectId(req.params.id);
   const updateField = req.body.updateField;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+//Perform the CRUD operation
   const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
     {_id:query},
     { $push:{battle_scars: updateField}},
@@ -100,6 +122,12 @@ const remove = async (req,res) =>
 {
   const query = new objectId(req.params.id);
   console.log(query);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+
   const response = await db_client.getDb().db(dbName).collection(colName).deleteOne({_id: query}); 
     console.log(response);
     if (response.deletedCount > 0) {
