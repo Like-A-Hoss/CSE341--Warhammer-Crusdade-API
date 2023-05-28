@@ -6,9 +6,9 @@ const specs = require('../swagger.json');
 
 // Routes
 router.use('/', require('./intro'));
-router.use('/army', require('./armies'))
+router.use('/army', require('./armies'));
 router.use('/unit', require('./units'));
 router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // Ship it out
-module.exports = router;
+module.exports = router; 

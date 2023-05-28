@@ -23,7 +23,7 @@ const getAll = async (req, res)=>
 //get a specific army
 const getSearch = async (req,res)=>
 {
-  const query = new objectId(req.params.id);;
+  const query = new objectId(req.params.id);
   console.log(query);
   const result = await db_client.getDb().db(dbName).collection(colName).find({id: query});
   result.toArray().then((data) => {
@@ -46,8 +46,54 @@ const postNew = async (req,res) =>
   const result = await db_client.getDb().db(dbName).collection(colName).insertOne(army, true)
     res.send({id: result.insertedId});
 };
+//update Resource Points
+const updateRp = async(req,res) =>
+{
+  const query = new objectId(req.params.id);
+  const updateField = req.body.updateField;
+  db_client.getDb().db(dbName).collection(colName).updateField(
+    {_id:query},
+    { $set:{RP: updateField}},
+    function(err, result) {
+      if(err) {
+        console.error('Error Updating Document:', err);
+        res.status(500).send('Error Updating File');
+        return;
+      }
+      if(result.modifiedCount === 1){
+        console.log('Document updated Successfully');
+        res.status(200).send('Document Updated Sucessfully');
+      }else{
+        console.log('Document Not Found');
+        res.status(404).send('Error 404 Document Not Found')
+      }
+    }
+     );
+};
 
-
+const updateSize = async(req,res) =>
+{
+  const query = new objectId(req.params.id);
+  const updateField = req.body.updateField;
+  db_client.getDb().db(dbName).collection(colName).updateField(
+    {_id:query},
+    { $set:{size: updateField}},
+    function(err, result) {
+      if(err) {
+        console.error('Error Updating Document:', err);
+        res.status(500).send('Error Updating File');
+        return;
+      }
+      if(result.modifiedCount === 1){
+        console.log('Document updated Successfully');
+        res.status(200).send('Document Updated Sucessfully');
+      }else{
+        console.log('Document Not Found');
+        res.status(404).send('Error 404 Document Not Found')
+      }
+    }
+     );
+};
 
 //export statement
-module.exports = {getAll, getSearch, postNew};
+module.exports = {getAll, getSearch, postNew, updateRp, updateSize};

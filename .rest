@@ -22,6 +22,12 @@ Content-Type: application/json
     "size": 500,
     "user_email": "hapleswithdice@gmail.com"
 }
+### Update RP
+PUT http://localhost:3000/army/rp/?6468411c70c6724db13ccf58 HTTP/1.1
+Content-Type: application/json
+{
+  "updateField" : 10
+}
 ### Post Unit
 POST http://localhost:3000/unit HTTP/1.1
 {
