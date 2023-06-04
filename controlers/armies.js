@@ -133,9 +133,8 @@ const updateSize = async(req,res) =>
 }
 };
 
-const updateLogo = async(req,res) =>
-{
-  try{
+const updateLogo = async (req, res) => {
+  try {
     const { id } = req.params;
     const { logoUrl } = req.body;
 
@@ -150,23 +149,26 @@ const updateLogo = async(req,res) =>
     if (!isValidExtension) {
       return res.status(400).json({ error: 'Invalid input: Logo URL must end with a supported image extension (jpg, gif, bmp, png).' });
     }
-  const query = new objectId(req.params.id);
-  const updateField = req.body.updateField;
-  const result = await db_client.getDb().db(dbName).collection(colName).updateOne(
-    {_id:query},
-    { $set:{army_logo: updateField}},
-    {upsert:true}
-    );
+
+    const query = new objectId(id);
+    const updateField = logoUrl;
+
+    const result = await db_client
+      .getDb()
+      .db(dbName)
+      .collection(colName)
+      .updateOne({ _id: query }, { $set: { army_logo: updateField } }, { upsert: true });
+
     if (result.modifiedCount > 0) {
       res.status(204).send();
     } else {
-      res.status(500).json(result.error || 'Some error occurred while updating your armies Logo.');
+      res.status(500).json(result.error || 'Some error occurred while updating your army\'s Logo.');
     }
-  }catch (error) {
-      console.error('Error updating logo URL:', error);
-      res.status(500).send('An error occurred while updating the logo URL.');
-    }
-  };
+  } catch (error) {
+    console.error('Error updating logo URL:', error);
+    res.status(500).send('An error occurred while updating the logo URL.');
+  }
+};
 // Delete Statement
 const remove = async (req,res) =>
 {
