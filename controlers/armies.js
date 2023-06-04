@@ -8,6 +8,7 @@ const app = express();
 const objectId = require('mongodb').ObjectId;
 const mongodb = require('mongodb');
 const router = express.Router();
+const validator = require('../middleware/id_validate')
 
 
 //variables to control DB and DB Access
@@ -26,6 +27,7 @@ const getAll = async (req, res)=>
 //get a specific army
 const getSearch = async (req,res)=>
 {
+  //Searching
   const query = new objectId(req.params.id);
   console.log(query);
   const result = await db_client.getDb().db(dbName).collection(colName).find({id: query});
@@ -33,22 +35,42 @@ const getSearch = async (req,res)=>
   res.setHeader('Content-Type', 'application/json');
   res.status(200).json(data);
 });
-};
+}
+
 // Post a new army
 const postNew = async (req,res) =>
 {
+  try {
+    const { name, faction, rp, size, user_email } = req.body;
+    //Validating
+    if(!name || !faction || !rp || !size || !user_email){
+      return res.status(400).json({error: 'Invalid Input: Name, Faction, RP, Size, or User E-Mail'});
+    }
+  //create constants
+  const $name = req.body.Name;
+  const $army_logo = req.body.army_logo;
+  const $faction = req.body.faction;
+  const $rp= req.body.RP;
+  const $size = req.body.size;
+  const $email = req.body.user_email
+ 
+  // Preping Army to post
   const army = {
-    Name: req.body.Name,
-    army_logo: req.body.army_logo,
-    faction: req.body.faction,
-    RP: req.body.RP,
-    size: req.body.size,
-    user_email: req.body.user_email
+    Name: $name,
+    army_logo: $army_logo,
+    faction: $faction,
+    RP: $rp,
+    size: $size,
+    user_email: $email
   };
-  
+  //Posting to Database
   const result = await db_client.getDb().db(dbName).collection(colName).insertOne(army, true)
     res.send({id: result.insertedId});
-};
+  } catch (error) {
+    console.error('Error Creating a new army:', error);
+    res.status(500).send('An Error occurred while creating your new army.  Please check your inputs and try again');
+  }
+  };
 
 //update Resource Points
 const updateRp = async(req,res) =>
