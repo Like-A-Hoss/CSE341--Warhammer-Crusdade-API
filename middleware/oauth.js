@@ -1,4 +1,8 @@
+require('dotenv').config();
 const oauth = require('oauth-library');
+//env variables
+const id = process.env.CLIENT_ID;
+const secret = process.env.CLIENT_SECRET;
 //Code from authO.com
 
 const express = require('express');
@@ -25,20 +29,33 @@ app.listen(port);
 console.log('Running on port ', port);
 
 // Initialize the OAuth client with necessary credentials
-const oauthClient = oauth.createClient({
-  // OAuth client configuration
+const oauthClient = require('simple-oauth2').create({
+    client:{
+        id: id,
+        secret: secret
+    },
+    auth:{
+    tokenHost: 'https://dev-wcau0oyqkd3gnubl.us.auth0.com/oauth/token'
+    }
 });
 
 const authenticateUserWithOAuth = async (username, password) => {
-  try {
-    // Authenticate user credentials with OAuth provider
-    const token = await oauthClient.authenticateUser(username, password);
-    return token;
-  } catch (error) {
-    throw new Error('Invalid credentials');
-  }
-};
-
+    try {
+      // Authenticate user credentials with OAuth provider
+      const token = await oauthClient.password.getToken({
+          username,
+          password,
+          scope: ' '
+      });
+      return token;
+    } catch (error) {
+      throw new Error('Invalid credentials');
+    }
+  };
+  
+  module.exports = {
+    authenticateUserWithOAuth,
+  };
 module.exports = {
   authenticateUserWithOAuth,
 };

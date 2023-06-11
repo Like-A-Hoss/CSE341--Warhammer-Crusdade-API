@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const path = require('../controlers/intro');
+const path = require('../controllers/intro');
 
 router.get('/', path.intro);
 

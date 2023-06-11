@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const path = require('../controlers/units');
+const path = require('../controllers/units');
 
 router.get('/', path.getAll);
 router.get('/:id', path.getSearch);
