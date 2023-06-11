@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const path = require('../controlers/armies');
+const path = require('../controllers/armies');
 const { validateId, validate } = require('../middleware/id_validate');
 
 router.get('/', path.getAll);

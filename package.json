@@ -17,6 +17,7 @@
     "express-validator": "^7.0.1",
     "mongodb": "^5.5.0",
     "nodemon": "^2.0.22",
+    "passport-oauth2": "^1.7.0",
     "swagger": "^0.0.1",
     "swagger-ui-express": "^4.6.3"
   },
